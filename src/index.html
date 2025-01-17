@@ -12,13 +12,84 @@
     />
 
     <style>
-        body{
-            font-family: "Jersey 10";
-        }
+      body {
+        font-family: "Jersey 10";
+      }
     </style>
+
+    <script defer src="html2canvas.min.js"></script>
+    <script defer src="disintegrate.js"></script>
+    <script defer src="index.js"></script>
   </head>
   <body class="bg-amber-950/40">
-    <p class="text-center text-white text-7xl mt-10">How much should I worry about my <span class="text-amber-950">assignment?</span></p>
-    <img src="gifs/Skeleton Walk 1.gif" alt="" class="h-20" />
+    <p class="text-center text-white text-7xl mt-10">
+      How much should I
+      <span class="text-amber-950">worry</span>
+      about my
+      <span class="text-amber-950">assignment?</span>
+    </p>
+
+    <div class="mx-auto w-fit mt-5">
+      <button
+        class="bg-amber-950/80 px-5 py-1 text-3xl border-4 border-amber-950 text-white rounded-sm hover:scale-105 transition-all hover:bg-amber-950/70 hover:border-amber-950/70 hover:text-white/90 active:bg-white/80 active:text-amber-950 active:border-amber-950"
+      >
+        Add Assignment
+      </button>
+    </div>
+
+    <div class="w-3/4 mx-auto">
+      <img
+        src="gifs/Skeleton Walk 1.gif"
+        alt=""
+        class="h-20 left-1/3 relative"
+        id="skeleton"
+        data-dis-type="simultaneous"
+        data-dis-ignore-colors="[255, 255, 255]>"
+      />
+
+      <div
+        class="bg-white/50 h-10 mx-auto border-amber-950 border-4 rounded-sm mt-0.5"
+        data-dis-type="simultaneous"
+        id="card1"
+      >
+        <div class="bg-amber-950/90 w-1/3 h-8 flex items-center text-white">
+          <p class="relative flex-1 text-right mx-2 text-lg">33%</p>
+        </div>
+      </div>
+      <div class="flex" id="texts"
+      data-dis-type="simultaneous"
+      data-dis-ignore-colors="[255, 255, 255]>">
+        <div class="text-lg text-amber-950 leading-tight flex-1">
+          <p class="text-3xl text-black">Science Project</p>
+          <p class="transition-all w-fit group">
+            Days to Finish:
+            <span class="transition-all text-white">3 days</span>
+          </p>
+          <p class="transition-all w-fit">
+            Due Date: <span class="transition-all text-white">January 20</span>
+          </p>
+          <p class="transition-all w-fit">
+            Time Remaining:
+            <span class="transition-all text-white"
+              >4 days, 8 hours, 7 minutes, 20 seconds</span
+            >
+          </p>
+        </div>
+        <div>
+          <button
+            class="bg-amber-950/80 text-white px-5 py-0.5 mt-1 text-lg rounded-sm"
+          >
+            ✓ Assignment Done
+          </button>
+          <p class="mt-2 text-center">Are you really done?</p>
+          <div class="flex gap-1 *:rounded-sm">
+            <button class="bg-white px-2 py-0.5 flex-auto">no 😓</button>
+            <button class="bg-amber-950/60 text-white px-2 py-0.5 flex-auto">
+              yes bruh 🤭
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
