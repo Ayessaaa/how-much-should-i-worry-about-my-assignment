@@ -944,8 +944,29 @@ video {
   background-color: rgb(69 26 3 / 0.7);
 }
 
+.hover\:bg-amber-950\/10:hover {
+  background-color: rgb(69 26 3 / 0.1);
+}
+
+.hover\:bg-amber-800\/10:hover {
+  background-color: rgb(146 64 14 / 0.1);
+}
+
+.hover\:bg-amber-900\/10:hover {
+  background-color: rgb(120 53 15 / 0.1);
+}
+
+.hover\:bg-amber-950\/20:hover {
+  background-color: rgb(69 26 3 / 0.2);
+}
+
 .hover\:text-white\/90:hover {
   color: rgb(255 255 255 / 0.9);
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .active\:border-amber-950:active {
@@ -955,6 +976,10 @@ video {
 
 .active\:bg-white\/80:active {
   background-color: rgb(255 255 255 / 0.8);
+}
+
+.active\:bg-amber-950\/30:active {
+  background-color: rgb(69 26 3 / 0.3);
 }
 
 .active\:text-amber-950:active {
