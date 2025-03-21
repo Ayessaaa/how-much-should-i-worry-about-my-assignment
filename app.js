@@ -3,7 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import session from "express-session";
-// import authController from "./controllers/authController.js";
+import authController from "./controllers/authController.js";
 
 
 const app = express();
@@ -36,6 +36,7 @@ app.get("/", (req, res)=>{
     res.render("index")
 })
 
+app.get("/sign-up", authController.signUp)
 
 // app.get("/sign-up", authController.signUp);
 
