@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Jersey 10";
+      }
+    </style>
+
+    <script defer src="html2canvas.min.js"></script>
+    <script defer src="disintegrate.js"></script>
+    <script defer src="index.js"></script>
+  </head>
+  <body class="bg-amber-950/40">
+    <p class="text-center text-white text-7xl mt-10">
+      How much should I
+      <span class="text-amber-950">worry</span>
+      about my
+      <span class="text-amber-950">assignment?</span>
+    </p>
+
+    <div class="w-3/4 mx-auto mt-10">
+      <img
+        src="gifs/Skeleton Walk 1.gif"
+        alt=""
+        class="h-20 relative"
+        id="skeleton"
+        data-dis-type="simultaneous"
+        data-dis-ignore-colors="[255, 255, 255]>"
+      />
+
+      <div
+        class="bg-white/50 h-10 mx-auto border-amber-950 border-4 rounded-sm mt-0.5"
+        data-dis-type="simultaneous"
+        id="card1"
+      >
+        <div
+          class="bg-amber-950/90 w-[0%] h-8 flex items-center text-white"
+          id="progress"
+        >
+          <p class="relative flex-1 text-right mx-2 text-lg" id="percent">
+            33%
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex"
+        id="texts"
+        data-dis-type="simultaneous"
+        data-dis-ignore-colors="[255, 255, 255]>"
+      >
+        <div class="text-lg text-amber-950 leading-tight flex-1">
+          <p class="text-3xl text-black">Science Project</p>
+          <p class="transition-all w-fit group">
+            Days to Finish:
+            <span class="transition-all text-white" id="daysRemaining"
+              >3 days</span
+            >
+          </p>
+          <p class="transition-all w-fit">
+            Due Date: <span class="transition-all text-white" id="dueDate"></span>
+          </p>
+          <p class="transition-all w-fit">
+            Time Remaining:
+            <span class="transition-all text-white" id="countdown"
+              ></span
+            >
+          </p>
+        </div>
+        <div>
+          <button
+            class="bg-amber-950/80 text-white px-5 py-0.5 mt-1 text-lg rounded-sm"
+          >
+            ✓ Assignment Done
+          </button>
+          <p class="mt-2 text-center">Are you really done?</p>
+          <div class="flex gap-1 *:rounded-sm">
+            <button
+              class="bg-white px-2 py-0.5 flex-auto hover:scale-105 transition-all hover:bg-amber-950/20 hover:text-white active:bg-amber-950/30"
+            >
+              no
+            </button>
+            <button class="bg-amber-950/60 text-white px-2 py-0.5 flex-auto">
+              yes bruh
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto w-fit mt-5">
+      <button
+        class="bg-amber-950/80 px-5 py-1 text-3xl border-4 border-amber-950 text-white rounded-sm hover:scale-105 transition-all hover:bg-amber-950/70 hover:border-amber-950/70 hover:text-white/90 active:bg-white/80 active:text-amber-950 active:border-amber-950"
+      >
+        Add Assignment
+      </button>
+    </div>
+  </body>
+  <script>
+    function getTimeDifference(startDate, endDate) {
+      const diffInMs = endDate - startDate; // Difference in milliseconds
+
+      const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
+
+      return { hours, minutes, seconds };
+    }
+
+    function updateCountdown(endDate) {
+      const now = new Date();
+      const targetDate = new Date(endDate); // Change to your target date
+
+      const remainingTime = getTimeDifference(now, targetDate);
+      document.getElementById(
+        "countdown"
+      ).innerHTML = `${remainingTime.hours} hours ${remainingTime.minutes} minutes ${remainingTime.seconds} seconds`;
+    }
+
+    function getProgressPercentage(startDate, endDate) {
+      const now = new Date(); // Current date
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+
+      const totalDuration = end - start; // Total duration in milliseconds
+      const elapsedTime = now - start; // Time passed in milliseconds
+
+      if (now < start) return 0; // If today is before startDate, progress is 0%
+      if (now > end) return 100; // If today is after endDate, progress is 100%
+
+      const percentage = (elapsedTime / totalDuration) * 100;
+      return percentage.toFixed(2); // Round to 2 decimal places
+    }
+
+    function updatePercent() {
+      var percent = getProgressPercentage(startDate, endDate);
+      document.getElementById("percent").innerHTML = `${percent}%`;
+      document.getElementById("progress").style.width = `${percent}%`;
+      document.getElementById("skeleton").style.left = `${percent}%`;
+    }
+
+    function daysRemainingFunc() {
+      const now = new Date();
+      const targetDate = new Date(endDate);
+      const diffInMs = targetDate - now; 
+
+      const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+      document.getElementById("daysRemaining").innerHTML = `${days} days`;
+    }
+
+
+    const startDate = "2025-03-21";
+    const endDate = "2025-03-22";
+
+    console.log(`Progress: ${getProgressPercentage(startDate, endDate)}%`);
+    setInterval(() => updateCountdown(endDate), 1000);
+    updatePercent();
+    setInterval(updatePercent, 6000);
+    updateCountdown();
+    daysRemainingFunc();
+    document.getElementById("dueDate").innerHTML = new Date(endDate).toUTCString();
+
+  </script>
+</html>
