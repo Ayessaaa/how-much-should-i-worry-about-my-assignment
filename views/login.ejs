@@ -18,18 +18,23 @@
     </style>
   </head>
   <body class="bg-amber-950/40">
-    <% if (error){%>
+    <% if (error === "wrong-password"){%>
+
       <div class="w-96 mx-auto bg-amber-950/20 mt-10 -mb-5 text-center py-1 text-xl text-white hover:scale-105 transition-all hover:bg-amber-950/30">
-        Account Already Exists!
+        Wrong Passsword!
+      </div>
+    <%} else if (error === "acc-not-exists"){%>
+      <div class="w-96 mx-auto bg-amber-950/20 mt-10 -mb-5 text-center py-1 text-xl text-white hover:scale-105 transition-all hover:bg-amber-950/30">
+        Account Does Not Exists!
       </div>
       <% } %>
     <form
       class="bg-white w-96 mx-auto p-3 mt-10"
       method="POST"
-      action="/auth/sign-up"
+      action="/auth/log-in"
     >
-      <p class="text-5xl text-center mt-3 text-amber-950/90">Sign Up</p>
-      <p class="text-lg text-center">Create your Account</p>
+      <p class="text-5xl text-center mt-3 text-amber-950/90">Log In</p>
+      <p class="text-lg text-center">Access your Account</p>
       <div class="px-10 mt-5 flex flex-col gap-2">
         <input
           type="text"
@@ -51,7 +56,7 @@
         <button
           class="bg-amber-950/80 px-3 mt-5 mb-2 text-2xl border-4 border-amber-950 text-white rounded-sm hover:scale-105 transition-all hover:bg-amber-950/70 hover:border-amber-950/70 hover:text-white/90 active:bg-white/80 active:text-amber-950 active:border-amber-950"
         >
-          Sign Up
+          Log In
         </button>
       </div>
     </form>

@@ -37,14 +37,19 @@ app.get("/", (req, res)=>{
 })
 
 app.get("/sign-up", authController.signUp)
+app.post("/auth/sign-up", authController.authSignUp);
+
+app.get("/log-in", authController.logIn)
+app.post("/auth/log-in", authController.authLogIn);
+
 
 // app.get("/sign-up", authController.signUp);
 
-// app.get("/sign-up/:err", authController.signUpError);
+app.get("/sign-up/:err", authController.signUpError);
 
 // app.get("/log-in", authController.logIn);
 
-// app.get("/log-in/:err", authController.logInError);
+app.get("/log-in/:err", authController.logInError);
 
 // app.post("/auth/sign-up", authController.authSignUp);
 
